@@ -1,0 +1,967 @@
+{
+	"info": {
+		"_postman_id": "09ac3779-6506-4f55-88f1-f3d3dcdc350d",
+		"name": "API Test QA Engineer",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "20459408"
+	},
+	"item": [
+		{
+			"name": "Scenario 1 - Verify id returned is in numerical format",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"get status response true\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"pm.test(\"response must be valid and have a body\", function () {",
+							"     pm.response.to.be.withBody;",
+							"     pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"verify id returned is in numerical format\", () => {",
+							"    const actualResponse = pm.response.json();",
+							"",
+							"    const isNumber = !isNaN(actualResponse.id)",
+							"",
+							"    pm.expect(isNumber).to.have.eql(true);",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"gender\":\"Male\",\n    \"email\":\"{{$randomEmail}}\",\n    \"status\":\"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v2/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "OK",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"gender\":\"Male\",\n    \"email\":\"{{$randomEmail}}\",\n    \"status\":\"active\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": "Text",
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Jul 2025 16:28:40 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "113"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"c704792d4114878398ce17f019be93b7\""
+						},
+						{
+							"key": "Feature-Policy",
+							"value": "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/users/8038592"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "e6b3f40f-2587-4993-8e48-e94db2815b91"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.083376"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cf-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=sUwaMcHBy1urZ1JX%2B1CrR%2BodgMLDkG4VdWecl18z3K4OgHHQh4YDC7PTeOmGe7Cr%2BcgkONmSTUDHu5L9qG5OWxrBVFDe3eM4xIunyw%3D%3D\"}]}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "966dfd9f0ee0cde6-SIN"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 8038592,\n    \"name\": \"Sylvester Kreiger\",\n    \"email\": \"Jessika_Hagenes@hotmail.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Scenario 2 - Verify status for first entry is only either \"active\" or \"inactive\"",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"pm.test(\"Verify status for first entry is only either 'active' or 'inactive'\", function () {",
+							"     const payload = JSON.parse(pm.request.body.raw)",
+							"     ",
+							"     let status = payload.status",
+							"",
+							"     let isValid = true",
+							"     // validate if status is number",
+							"     if (!isNaN(status)){",
+							"        isValid = false",
+							"        pm.expect(isValid).to.have.eql(true)",
+							"        return",
+							"     }",
+							"",
+							"",
+							"     // validate if status is NaN",
+							"     if (isNaN(status)){",
+							"        status = status.toLowerCase()",
+							"     }",
+							"",
+							"     // validate if status is valid from hash map",
+							"     const validStatus = new Map([[\"active\",true],[\"inactive\",true]])",
+							"     if(!validStatus.get(status)){",
+							"        isValid = false",
+							"     }",
+							"   ",
+							"    pm.expect(isValid).to.have.eql(true)",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{accessToken}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"gender\":\"Male\",\n    \"email\":\"{{$randomEmail}}\",\n    \"status\":\"active\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v2/users",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2",
+						"users"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "active",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"gender\":\"Male\",\n    \"email\":\"{{$randomEmail}}\",\n    \"status\":\"active\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Jul 2025 17:37:22 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "98"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"d2cdca88ef6d795d78b173725bee6b53\""
+						},
+						{
+							"key": "Feature-Policy",
+							"value": "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/users/8038805"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "85"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "a67674da-80d6-42a5-b8af-d82fc1d5a855"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.080552"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cf-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=8mBBzhDdIAPUa6t8C0jYb28O4Sr0yI3hJ33Df2flci3UokikvKNNOLl3PVoiNnKdOT7vQDJup80J35NLQa26GTFaDDsCoC7dgDjGow%3D%3D\"}]}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "966e6245288ec6f3-SIN"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 8038805,\n    \"name\": \"Karen Brown\",\n    \"email\": \"Rowena38@yahoo.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}"
+				},
+				{
+					"name": "inactive",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"gender\":\"Male\",\n    \"email\":\"{{$randomEmail}}\",\n    \"status\":\"inactive\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Jul 2025 17:37:45 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "105"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"caa31f81c3c104396f2bc0557cfa796c\""
+						},
+						{
+							"key": "Feature-Policy",
+							"value": "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/users/8038806"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "1914dd02-ef37-4d0f-ba4b-fcb9d2005aca"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.050930"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cf-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=S4wj3%2FGyGpivCF5KcnvW%2BDnLKzc%2FLRz3W2EaDOi1tmZw5eObFSbb39usI4pvIgyEcG%2FO9U5ubDK3QKDllVexmcJA4wvkgBB6078p0Q%3D%3D\"}]}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "966e62d49b50c6f3-SIN"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 8038806,\n    \"name\": \"Randall Kshlerin\",\n    \"email\": \"Norval36@yahoo.com\",\n    \"gender\": \"male\",\n    \"status\": \"inactive\"\n}"
+				},
+				{
+					"name": "ACTIVE",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"gender\":\"Male\",\n    \"email\":\"{{$randomEmail}}\",\n    \"status\":\"ACTIVE\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"status": "Created",
+					"code": 201,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Jul 2025 17:38:07 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "112"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "max-age=0, private, must-revalidate"
+						},
+						{
+							"key": "Etag",
+							"value": "W/\"ba638a477de199be3a419eed66b533db\""
+						},
+						{
+							"key": "Feature-Policy",
+							"value": "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'"
+						},
+						{
+							"key": "Location",
+							"value": "https://gorest.co.in/public/v2/users/8038807"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "7dd4c488-b866-410b-aa66-9d4fb4b8bd48"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.078233"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cf-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=T0Xayz6BkrrXiDOoCL%2FfN60sbk1%2Fu6NUZm8sX4J8wz6yxM1hM8aMawxfn3WisRy1cz05f6qkeSftZP03j5LC29%2BTBnk8ZA5uBO7bxg%3D%3D\"}]}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "966e635a5c0cc6f3-SIN"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"id\": 8038807,\n    \"name\": \"Harriet Keebler\",\n    \"email\": \"Lauren.Reichel29@hotmail.com\",\n    \"gender\": \"male\",\n    \"status\": \"active\"\n}"
+				},
+				{
+					"name": "string 1111",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"gender\":\"Male\",\n    \"email\":\"{{$randomEmail}}\",\n    \"status\":\"1111\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Jul 2025 17:38:44 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Feature-Policy",
+							"value": "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "abfc7ab0-76e3-46aa-973d-957d2d64908f"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.072987"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cf-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=8QJmg7uFhAbECcqmVCbra%2FAFJFeItyRmerOTQit8yoojufuR976aSRIuUEjSpEp02Ee746ZOEUCr7QO3qTXCuXZacbbOgNIvzgsCmA%3D%3D\"}]}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "966e64456e32c6f3-SIN"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"field\": \"status\",\n        \"message\": \"can't be blank\"\n    }\n]"
+				},
+				{
+					"name": "number 1111",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"{{$randomFullName}}\",\n    \"gender\":\"Male\",\n    \"email\":\"{{$randomEmail}}\",\n    \"status\":1111\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2/users",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2",
+								"users"
+							]
+						}
+					},
+					"status": "Unprocessable Entity",
+					"code": 422,
+					"_postman_previewlanguage": null,
+					"header": [
+						{
+							"key": "Date",
+							"value": "Tue, 29 Jul 2025 17:39:26 GMT"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "47"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Cache-Control",
+							"value": "no-cache"
+						},
+						{
+							"key": "Feature-Policy",
+							"value": "camera 'none'; gyroscope 'none'; microphone 'none'; usb 'none'; fullscreen 'self'"
+						},
+						{
+							"key": "Referrer-Policy",
+							"value": "strict-origin-when-cross-origin"
+						},
+						{
+							"key": "Vary",
+							"value": "Origin"
+						},
+						{
+							"key": "X-Content-Type-Options",
+							"value": "nosniff"
+						},
+						{
+							"key": "X-Download-Options",
+							"value": "noopen"
+						},
+						{
+							"key": "X-Frame-Options",
+							"value": "SAMEORIGIN"
+						},
+						{
+							"key": "X-Permitted-Cross-Domain-Policies",
+							"value": "none"
+						},
+						{
+							"key": "X-Ratelimit-Limit",
+							"value": "90"
+						},
+						{
+							"key": "X-Ratelimit-Remaining",
+							"value": "89"
+						},
+						{
+							"key": "X-Ratelimit-Reset",
+							"value": "1"
+						},
+						{
+							"key": "X-Request-Id",
+							"value": "fa2bc1c9-1c83-4e91-8b37-9e9ef929ec48"
+						},
+						{
+							"key": "X-Runtime",
+							"value": "0.074591"
+						},
+						{
+							"key": "X-Xss-Protection",
+							"value": "0"
+						},
+						{
+							"key": "Cf-Cache-Status",
+							"value": "DYNAMIC"
+						},
+						{
+							"key": "Nel",
+							"value": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}"
+						},
+						{
+							"key": "Report-To",
+							"value": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=j3u%2BAKV%2BDnxmCuy1ryKaGMnbUat1nayiYvt7QxckgXwVmhIIw44inzffTqXxko6PGQR0BFIZqYxaDAaa9sscs3YM%2FRgPjbyziDtVjQ%3D%3D\"}]}"
+						},
+						{
+							"key": "Server",
+							"value": "cloudflare"
+						},
+						{
+							"key": "CF-RAY",
+							"value": "966e65478b12c6f3-SIN"
+						},
+						{
+							"key": "alt-svc",
+							"value": "h3=\":443\"; ma=86400"
+						}
+					],
+					"cookie": [],
+					"body": "[\n    {\n        \"field\": \"status\",\n        \"message\": \"can't be blank\"\n    }\n]"
+				}
+			]
+		}
+	]
+}
